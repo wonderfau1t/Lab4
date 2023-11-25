@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Lab4.Models
 {
-    public class InvoiceManager
+    public static class InvoiceManager
     {
-        public ObservableCollection<Invoice> Invoices = new ObservableCollection<Invoice>();
+        public static ObservableCollection<Invoice> Invoices = new ObservableCollection<Invoice>();
 
-        public ObservableCollection<Invoice> GetInvoices() 
+        public static ObservableCollection<Invoice> GetInvoices() 
         { 
             return Invoices; 
         }
 
-        public void AddInvoice(Invoice invoice)
+        public static void AddInvoice(Invoice invoice)
         {
             Invoices.Add(invoice);
         }

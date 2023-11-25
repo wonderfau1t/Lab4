@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Lab4
 {
     /// <summary>
-    /// Логика взаимодействия для Window1.xaml
+    /// Логика взаимодействия для FillingInvoiceWindow.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class FillingInvoiceWindow : Window
     {
-        public Window1()
+        public FillingInvoiceWindow()
         {
             InitializeComponent();
         }

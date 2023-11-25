@@ -1,0 +1,12 @@
+{
+  "invoicesTypes": [
+    {
+      "invoiceTypeName": "Мебель",
+      "productList": [ "Стол", "Стул", "Кресло" ]
+    },
+    {
+      "invoiceTypeName": "Электроника",
+      "productList": [ "Телефон", "Планшет", "Телевизор" ]
+    }
+  ]
+}

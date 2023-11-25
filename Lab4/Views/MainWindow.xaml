@@ -13,13 +13,13 @@
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
 
-        <Button Content="Добавить запись" Margin="75 25 75 25"/>
+        <Button Content="Добавить запись" Command="{Binding OpenInvoiceCreateWindowCommand}" Margin="75 25 75 25"/>
 
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Configurations}" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Invoices}" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Date" Binding="{Binding Name}" Width="*"/>
-                <DataGridTextColumn Header="Sum" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Binding="{Binding OrganizationName}" Header="Name" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Date}" Header="Date" Width="*"/>
+                <DataGridTextColumn Binding="{Binding TotalSum}" Header="Sum"  Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

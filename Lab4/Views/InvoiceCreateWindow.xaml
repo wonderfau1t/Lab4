@@ -1,4 +1,4 @@
-﻿<Window x:Class="Lab4.Window1"
+﻿<Window x:Class="Lab4.InvoiceCreateWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -25,18 +25,18 @@
 
 
         <TextBlock Grid.Column="0" Grid.Row="1" Text="Организация" Margin="0,18,0,18" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="20"/>
+        <TextBox Text="{Binding organizationName }" Grid.Column="1" Grid.Row="1" Margin="20"/>
 
         <TextBlock Grid.Column="0" Grid.Row="2" Text="Дата" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <DatePicker Grid.Column="1" Grid.Row="2" Margin="20"/>
+        <DatePicker SelectedDate="{Binding dateOfCreation}" Grid.Column="1" Grid.Row="2" Margin="20"/>
 
         <TextBlock Grid.Column="0" Grid.Row="3" Text="Тип накладной" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <ComboBox Grid.Column="1" Grid.Row="3" Margin="20"/>
+        <ComboBox  ItemsSource="{Binding invoiceTypes}" SelectedItem="{Binding selectedInvoiceType}" DisplayMemberPath="invoiceTypeName" Grid.Column="1" Grid.Row="3" Margin="20"/>
 
         <TextBlock Grid.Column="0" Grid.Row="4" Text="Количество записей" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Margin="20"/>
+        <TextBox Text="{Binding countOfProducts}" Grid.Column="1" Grid.Row="4" Margin="20"/>
 
-        <Button Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="Заполнить накладную" HorizontalAlignment="Center" Margin="20"/>
+        <Button  Command="{Binding OpenFillingInvoiceWindowCommand}" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Content="Заполнить накладную" HorizontalAlignment="Center" Margin="20"/>
 
 
     </Grid>

@@ -10,21 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Lab4.ViewModels;
 
 namespace Lab4
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Window1.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class InvoiceCreateWindow : Window
     {
-        public MainWindow()
+        public InvoiceCreateWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowVM();
+            DataContext = new InvoiceCreateWindowVM();
         }
     }
 }
