@@ -11,7 +11,7 @@ namespace Lab4.jsonParse
     public static class FileConnect
     {
 
-        public static InvoicesTypes invoicesTypes = LoadInvoicesTypes("C:\\Users\\dmitrij\\source\\repos\\Lab4\\Lab4\\jsonParse\\invoicesTypes.json");
+        public static InvoicesTypes invoicesTypes = LoadInvoicesTypes("C:\\Users\\itige\\source\\repos\\wonderfau1t\\Lab4\\Lab4\\jsonParse\\invoicesTypes.json");
 
         public static InvoicesTypes LoadInvoicesTypes(string filePath)
         {

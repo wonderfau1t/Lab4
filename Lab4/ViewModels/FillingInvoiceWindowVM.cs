@@ -14,12 +14,19 @@ namespace Lab4.ViewModels
 {
     public class FillingInvoiceWindowVM : ViewModelBase
     {
-        public string organizationName { get; }
-        public string invoiceTypeName { get; }
-        public int countOfProducts { get; }
-        public string dateOfCreation { get; }
+        public string OrganizationName { get; }
+        public string InvoiceTypeName { get; }
+        public int CountOfProducts { get; }
+        public string DateOfCreation { get; }
+
+        public List<string> ProductList { get; set; }
+        public ObservableCollection<Product> Products { get; set; } = new ObservableCollection<Product>();
+
+        private ICommand _addInvoice;
+        private ICommand _calculateSum;
         private decimal _totalSum  = 0;
-        public decimal totalSum
+
+        public decimal TotalSum
         {
             get { return _totalSum; }
             set
@@ -27,56 +34,21 @@ namespace Lab4.ViewModels
                 if (_totalSum != value)
                 {
                     _totalSum = value;
-                    OnPropertyChanged(nameof(totalSum));
+                    OnPropertyChanged(nameof(TotalSum));
                 }
             }
-        }
-        
-        public List<string> _productList { get; set; }
-        private ICommand _addInvoice;
-        private ICommand _calculateSum;
-        public ObservableCollection<Product> products { get; set; } = new ObservableCollection<Product>();
-        public Product SelectedProduct { get; set; }
-
-        public FillingInvoiceWindowVM(string organizationName, InvoiceType invoiceType, string countOfProducts, DateTime dateTime)
-        {
-            this.organizationName = organizationName;
-            this.invoiceTypeName = invoiceType.invoiceTypeName;
-            this._productList = invoiceType.productList;
-            this.countOfProducts = Convert.ToInt32(countOfProducts);
-            this.dateOfCreation = dateTime.ToShortDateString();
-            
-            for (int i = 0; i < this.countOfProducts; i++)
-            {
-                AddRow();
-            }
-        }
-
-        private void AddRow()
-        {
-            products.Add(new Product());
         }
 
         public ICommand CalculateSumCommand
         {
-            get {
-                if (_calculateSum == null) 
+            get
+            {
+                if (_calculateSum == null)
                 {
                     _calculateSum = new RelayCommand(calculateSum);
                 }
                 return _calculateSum;
             }
-            
-        }
-
-        private void calculateSum()
-        {
-            decimal sum = 0;
-            foreach (Product product in products)
-            {
-                sum += product.Quantity * product.Price;
-            }
-            this.totalSum = sum;
         }
 
         public ICommand AddInvoiceCommand
@@ -91,12 +63,49 @@ namespace Lab4.ViewModels
             }
         }
 
+        public FillingInvoiceWindowVM(string OrganizationName, InvoiceType InvoiceType, int CountOfProducts, DateTime dateTime)
+        {
+            this.OrganizationName = OrganizationName;
+            this.InvoiceTypeName = InvoiceType.invoiceTypeName;
+            this.ProductList = InvoiceType.productList;
+            this.CountOfProducts = CountOfProducts;
+            this.DateOfCreation = dateTime.ToShortDateString();
+            
+            for (int i = 0; i < this.CountOfProducts; i++)
+            {
+                Products.Add(new Product());
+            }
+        }
+
+        private void calculateSum()
+        {
+            decimal sum = 0;
+            foreach (Product product in Products)
+            {
+                sum += product.Quantity * product.Price;
+            }
+            this.TotalSum = sum;
+        }
+
         private void AddInvoice()
         {
-            Invoice invoice = new Invoice(dateOfCreation, organizationName, products, totalSum);
-            InvoiceManager.AddInvoice(invoice);
-            Window window = Application.Current.Windows.OfType<FillingInvoiceWindow>().FirstOrDefault();
-            window.Close();
+            bool flag = true;
+            foreach (Product product in Products)
+            {
+                if (product.Name == null || product.Quantity == 0 || product.Price == 0)
+                {
+                    MessageBox.Show("Заполните все поля");
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag)
+            {
+                Invoice invoice = new Invoice(DateOfCreation, OrganizationName, Products, TotalSum);
+                InvoiceManager.AddInvoice(invoice);
+                Window window = Application.Current.Windows.OfType<FillingInvoiceWindow>().FirstOrDefault();
+                window.Close();
+            }
         }
     }
 }

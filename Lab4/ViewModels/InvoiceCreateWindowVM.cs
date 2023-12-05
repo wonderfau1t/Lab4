@@ -14,18 +14,18 @@ namespace Lab4.ViewModels
 {
     public class InvoiceCreateWindowVM : ViewModelBase
     {
-        public string organizationName { get; set; }
-        public DateTime dateOfCreation { get; set; }
-        public ObservableCollection<InvoiceType> invoiceTypes { get; set; }
-        public string countOfProducts { get; set; }
+        public string OrganizationName { get; set; }
+        public DateTime DateOfCreation { get; set; }
+        public ObservableCollection<InvoiceType> InvoiceTypes { get; set; }
+        public string CountOfProducts { get; set; }
 
-        public InvoiceType selectedInvoiceType { get; set; }
+        public InvoiceType SelectedInvoiceType { get; set; }
 
         private ICommand openFillingInvoiceWindowCommand;
 
         public InvoiceCreateWindowVM()
         {
-            invoiceTypes = FileConnect.invoicesTypes.invoicesTypes;
+            InvoiceTypes = FileConnect.invoicesTypes.invoicesTypes;
         }
 
         public ICommand OpenFillingInvoiceWindowCommand
@@ -41,9 +41,11 @@ namespace Lab4.ViewModels
         }
         private void OpenFillingInvoiceWindow()
         {
-            if (organizationName == null)
+            if (int.TryParse(CountOfProducts, out int result) {
+
+            }
             FillingInvoiceWindow fillingInvoiceWindow = new FillingInvoiceWindow();
-            fillingInvoiceWindow.DataContext = new FillingInvoiceWindowVM(organizationName, selectedInvoiceType, countOfProducts, dateOfCreation);
+            fillingInvoiceWindow.DataContext = new FillingInvoiceWindowVM(OrganizationName, SelectedInvoiceType, CountOfProducts, DateOfCreation);
             fillingInvoiceWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             fillingInvoiceWindow.Show();
         }

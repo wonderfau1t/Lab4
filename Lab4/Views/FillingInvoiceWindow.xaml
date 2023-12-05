@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Lab4"
+        xmlns:local="clr-namespace:Lab4" xmlns:viewmodels="clr-namespace:Lab4.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:FillingInvoiceWindowVM}"
         mc:Ignorable="d"
         Title="FillingInvoiceWindow" Height="474" Width="629">
     <Grid>
@@ -28,16 +28,16 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Организация:"/>
-            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding organizationName}"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding OrganizationName}"/>
 
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Дата создания:"/>
-            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding dateOfCreation}"/>
+            <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DateOfCreation}"/>
 
             <TextBlock Grid.Row="0" Grid.Column="2" Text="Тип накладной:"/>
-            <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding invoiceTypeName}"/>
+            <TextBlock Grid.Row="0" Grid.Column="3" Text="{Binding InvoiceTypeName}"/>
 
             <TextBlock Grid.Row="1" Grid.Column="2" Text="Количество записей:"/>
-            <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding countOfProducts}"/>
+            <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding CountOfProducts }"/>
 
         </Grid>
         <DataGrid Grid.Row="1" ItemsSource="{Binding products}" AutoGenerateColumns="False" CanUserAddRows="False" Grid.ColumnSpan="2" Grid.RowSpan="3">
@@ -62,7 +62,7 @@
             <StackPanel Grid.Column="0" Orientation="Horizontal">
                 <Button Command="{Binding CalculateSumCommand}" Content="Суммировать" Margin="25"/>
                 <TextBlock Text="Общая сумма:" Margin=" 10 30"/>
-                <TextBlock Text="{Binding totalSum}" Margin="10 30"/>
+                <TextBlock Text="{Binding TotalSum}" Margin="10 30"/>
             </StackPanel>
             <Button Grid.Column="1" Content="Создать накладную" Command="{Binding AddInvoiceCommand}" Margin="30 15"/>
         </Grid>
