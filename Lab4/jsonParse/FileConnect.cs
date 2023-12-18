@@ -1,23 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Lab4.Models;
 using Newtonsoft.Json;
 
 namespace Lab4.jsonParse
 {
-    public static class FileConnect
+    public class FileConnect
     {
+        private static readonly Lazy<FileConnect> _instance = new Lazy<FileConnect>(CreateInstance);
 
-        public static InvoicesTypes invoicesTypes = LoadInvoicesTypes("C:\\Users\\itige\\source\\repos\\wonderfau1t\\Lab4\\Lab4\\jsonParse\\invoicesTypes.json");
-
-        public static InvoicesTypes LoadInvoicesTypes(string filePath)
+        private FileConnect()
         {
-            string jsonContent = System.IO.File.ReadAllText(filePath);
+            
+        }
 
-            InvoicesTypes invoicesTypes = JsonConvert.DeserializeObject<InvoicesTypes>(jsonContent);
+        public static FileConnect Instance
+        {
+            get { return _instance.Value; }
+        }
+        
+        private static FileConnect CreateInstance()
+        {
+            return new FileConnect();
+        }
+
+        public static List<InvoiceType> invoicesTypes = LoadInvoicesTypes();
+
+        public static List<InvoiceType> LoadInvoicesTypes()
+        {
+            string jsonContent = System.IO.File.ReadAllText("C:\\Users\\itige\\source\\repos\\wonderfau1t\\Lab4\\Lab4\\jsonParse\\invoicesTypes.json");
+
+            List<InvoiceType>invoicesTypes = JsonConvert.DeserializeObject<List<InvoiceType>>(jsonContent);
 
             return invoicesTypes;
         }

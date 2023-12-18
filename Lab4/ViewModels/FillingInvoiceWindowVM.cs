@@ -1,12 +1,9 @@
 ﻿using Lab4.Commands;
-using Lab4.jsonParse;
 using Lab4.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -25,6 +22,10 @@ namespace Lab4.ViewModels
         private ICommand _addInvoice;
         private ICommand _calculateSum;
         private decimal _totalSum  = 0;
+
+        // Напиши юнит-тесты для методов, для которых это уместно и возможно
+
+
 
         public decimal TotalSum
         {
@@ -45,7 +46,7 @@ namespace Lab4.ViewModels
             {
                 if (_calculateSum == null)
                 {
-                    _calculateSum = new RelayCommand(calculateSum);
+                    _calculateSum = new RelayCommand(CalculateSum);
                 }
                 return _calculateSum;
             }
@@ -66,8 +67,8 @@ namespace Lab4.ViewModels
         public FillingInvoiceWindowVM(string OrganizationName, InvoiceType InvoiceType, int CountOfProducts, DateTime dateTime)
         {
             this.OrganizationName = OrganizationName;
-            this.InvoiceTypeName = InvoiceType.invoiceTypeName;
-            this.ProductList = InvoiceType.productList;
+            this.InvoiceTypeName = InvoiceType.InvoiceTypeName;
+            this.ProductList = InvoiceType.ProductList;
             this.CountOfProducts = CountOfProducts;
             this.DateOfCreation = dateTime.ToShortDateString();
             
@@ -77,12 +78,14 @@ namespace Lab4.ViewModels
             }
         }
 
-        private void calculateSum()
+        private void CalculateSum()
         {
             decimal sum = 0;
             foreach (Product product in Products)
             {
+
                 sum += product.Quantity * product.Price;
+
             }
             this.TotalSum = sum;
         }

@@ -1,5 +1,4 @@
-{
-  "invoicesTypes": [
+[
     {
       "invoiceTypeName": "Мебель",
       "productList": [ "Стол", "Стул", "Кресло" ]
@@ -9,4 +8,3 @@
       "productList": [ "Телефон", "Планшет", "Телевизор" ]
     }
   ]
-}

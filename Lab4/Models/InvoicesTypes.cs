@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Lab4.Models
 {
-    public class InvoicesTypes
-    {
-        public ObservableCollection<InvoiceType> invoicesTypes { get; set; }
-    }
     public class InvoiceType
     {
-        public string invoiceTypeName { get; set; }
-        public List<string> productList { get; set; }
+        public string InvoiceTypeName { get; set; }
+        public List<string> ProductList { get; set; }
     }
 }

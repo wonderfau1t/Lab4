@@ -40,12 +40,12 @@
             <TextBlock Grid.Row="1" Grid.Column="3" Text="{Binding CountOfProducts }"/>
 
         </Grid>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding products}" AutoGenerateColumns="False" CanUserAddRows="False" Grid.ColumnSpan="2" Grid.RowSpan="3">
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Products}" AutoGenerateColumns="False" CanUserAddRows="False" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Товар" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <ComboBox ItemsSource="{Binding Path=DataContext._productList, RelativeSource={RelativeSource AncestorType=DataGrid}}" SelectedItem="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <ComboBox ItemsSource="{Binding Path=DataContext.ProductList, RelativeSource={RelativeSource AncestorType=DataGrid}}" SelectedItem="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

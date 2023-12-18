@@ -9,8 +9,6 @@ public class ViewModelBase : INotifyPropertyChanged
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
-    // Метод, который упрощает установку значения свойства и вызов события PropertyChanged
-    // Пример использования: SetProperty(ref _myProperty, value, nameof(MyProperty));
     protected bool SetProperty<T>(ref T storage, T value, string propertyName)
     {
         if (object.Equals(storage, value)) return false;

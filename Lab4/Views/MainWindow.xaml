@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Lab4"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="650">
+        Title="MainWindow" Height="500" Width="650"
+        ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
