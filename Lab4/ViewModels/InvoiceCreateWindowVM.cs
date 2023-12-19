@@ -25,7 +25,7 @@ namespace Lab4.ViewModels
 
         public InvoiceCreateWindowVM()
         {
-            InvoiceTypes = FileConnect.invoicesTypes.invoicesTypes;
+            InvoiceTypes = new ObservableCollection<InvoiceType>(FileConnect.invoicesTypes);
         }
 
         public ICommand OpenFillingInvoiceWindowCommand
@@ -41,13 +41,26 @@ namespace Lab4.ViewModels
         }
         private void OpenFillingInvoiceWindow()
         {
-            if (int.TryParse(CountOfProducts, out int result) {
-
+            if (OrganizationName == null || SelectedInvoiceType == null || CountOfProducts == null || DateOfCreation == null)
+            {
+                MessageBox.Show("Заполните все поля");
             }
-            FillingInvoiceWindow fillingInvoiceWindow = new FillingInvoiceWindow();
-            fillingInvoiceWindow.DataContext = new FillingInvoiceWindowVM(OrganizationName, SelectedInvoiceType, CountOfProducts, DateOfCreation);
-            fillingInvoiceWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            fillingInvoiceWindow.Show();
+            else if (int.TryParse(CountOfProducts, out int result)) {
+                if (result <= 0)
+                {
+                    MessageBox.Show("Количество товаров должно быть больше 0");
+                    return;
+                }
+                FillingInvoiceWindow fillingInvoiceWindow = new FillingInvoiceWindow();
+                fillingInvoiceWindow.DataContext = new FillingInvoiceWindowVM(OrganizationName, SelectedInvoiceType, result, DateOfCreation);
+                fillingInvoiceWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                fillingInvoiceWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("Количество товаров должно быть числом");
+            }
+            
         }
     }
 }
